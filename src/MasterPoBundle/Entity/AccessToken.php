@@ -2,29 +2,25 @@
 
 namespace MasterPoBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\AccessToken as BaseAccessToken;
-use FOS\OAuthServerBundle\Model\ClientInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * AccessToken
  */
-class AccessToken extends BaseAccessToken
+class AccessToken
 {
     /**
      * @var integer
      */
-    protected $id;
+    private $id;
 
     /**
      * @var \MasterPoBundle\Entity\Client
      */
-    protected $client;
+    private $client;
 
     /**
      * @var \MasterPoBundle\Entity\User
      */
-    protected $user;
+    private $user;
 
 
     /**
@@ -37,12 +33,14 @@ class AccessToken extends BaseAccessToken
         return $this->id;
     }
 
-
     /**
-     * @param ClientInterface|null $client
-     * @return $this|void
+     * Set client
+     *
+     * @param \MasterPoBundle\Entity\Client $client
+     *
+     * @return AccessToken
      */
-    public function setClient(ClientInterface $client = null)
+    public function setClient(\MasterPoBundle\Entity\Client $client)
     {
         $this->client = $client;
 
@@ -60,10 +58,13 @@ class AccessToken extends BaseAccessToken
     }
 
     /**
-     * @param UserInterface|null $user
-     * @return $this|void
+     * Set user
+     *
+     * @param \MasterPoBundle\Entity\User $user
+     *
+     * @return AccessToken
      */
-    public function setUser(UserInterface $user = null)
+    public function setUser(\MasterPoBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -80,3 +81,4 @@ class AccessToken extends BaseAccessToken
         return $this->user;
     }
 }
+

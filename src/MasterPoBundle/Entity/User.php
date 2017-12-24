@@ -12,45 +12,7 @@ class User extends BaseUser
         parent::__construct();
     }
 
-    /**
-     * @var \Doctrine\Common\Collections\Collection
-     */
-    private $blogPosts;
 
-
-    /**
-     * Add blogPost
-     *
-     * @param \MasterPoBundle\Entity\BlogPost $blogPost
-     *
-     * @return User
-     */
-    public function addBlogPost(\MasterPoBundle\Entity\BlogPost $blogPost)
-    {
-        $this->blogPosts[] = $blogPost;
-
-        return $this;
-    }
-
-    /**
-     * Remove blogPost
-     *
-     * @param \MasterPoBundle\Entity\BlogPost $blogPost
-     */
-    public function removeBlogPost(\MasterPoBundle\Entity\BlogPost $blogPost)
-    {
-        $this->blogPosts->removeElement($blogPost);
-    }
-
-    /**
-     * Get blogPosts
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getBlogPosts()
-    {
-        return $this->blogPosts;
-    }
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -167,5 +129,34 @@ class User extends BaseUser
     public function getAuthCodes()
     {
         return $this->auth_codes;
+    }
+    /**
+     * @var \MasterPoBundle\Entity\Profile
+     */
+    private $profile;
+
+
+    /**
+     * Set profile
+     *
+     * @param \MasterPoBundle\Entity\Profile $profile
+     *
+     * @return User
+     */
+    public function setProfile(\MasterPoBundle\Entity\Profile $profile = null)
+    {
+        $this->profile = $profile;
+
+        return $this;
+    }
+
+    /**
+     * Get profile
+     *
+     * @return \MasterPoBundle\Entity\Profile
+     */
+    public function getProfile()
+    {
+        return $this->profile;
     }
 }

@@ -1,0 +1,33 @@
+MasterPoBundle\Entity\Country:
+    type: entity
+    table: null
+    repositoryClass: MasterPoBundle\Repository\CountryRepository
+    oneToMany:
+        regions:
+            targetEntity: MasterPoBundle\Entity\Region
+            mappedBy: country
+
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: '50'
+
+        slug:
+            type: string
+            length: 128
+            gedmo:
+                slug:
+                    separator: _
+                    style: camel
+                    fields:
+                      - name
+    indexes:
+        search_idx:
+            columns: slug
+    lifecycleCallbacks: {  }

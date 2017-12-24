@@ -2,29 +2,26 @@
 
 namespace MasterPoBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\AuthCode as BaseAuthCode;
-use FOS\OAuthServerBundle\Model\ClientInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * AuthCode
  */
-class AuthCode extends BaseAuthCode
+class AuthCode
 {
     /**
      * @var integer
      */
-    protected $id;
+    private $id;
 
     /**
      * @var \MasterPoBundle\Entity\Client
      */
-    protected $client;
+    private $client;
 
     /**
      * @var \MasterPoBundle\Entity\User
      */
-    protected $user;
+    private $user;
+
 
     /**
      * Get id
@@ -37,10 +34,13 @@ class AuthCode extends BaseAuthCode
     }
 
     /**
-     * @param ClientInterface|null $client
-     * @return $this|void
+     * Set client
+     *
+     * @param \MasterPoBundle\Entity\Client $client
+     *
+     * @return AuthCode
      */
-    public function setClient(ClientInterface $client = null)
+    public function setClient(\MasterPoBundle\Entity\Client $client)
     {
         $this->client = $client;
 
@@ -58,10 +58,13 @@ class AuthCode extends BaseAuthCode
     }
 
     /**
-     * @param UserInterface|null $user
-     * @return $this|void
+     * Set user
+     *
+     * @param \MasterPoBundle\Entity\User $user
+     *
+     * @return AuthCode
      */
-    public function setUser(UserInterface $user = null)
+    public function setUser(\MasterPoBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -78,3 +81,4 @@ class AuthCode extends BaseAuthCode
         return $this->user;
     }
 }
+

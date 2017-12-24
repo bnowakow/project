@@ -2,29 +2,26 @@
 
 namespace MasterPoBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\RefreshToken as BaseRefreshToken;
-use FOS\OAuthServerBundle\Model\ClientInterface;
-use Symfony\Component\Security\Core\User\UserInterface;
-
 /**
  * RefreshToken
  */
-class RefreshToken extends BaseRefreshToken
+class RefreshToken
 {
     /**
      * @var integer
      */
-    protected $id;
+    private $id;
 
     /**
      * @var \MasterPoBundle\Entity\Client
      */
-    protected $client;
+    private $client;
 
     /**
      * @var \MasterPoBundle\Entity\User
      */
-    protected $user;
+    private $user;
+
 
     /**
      * Get id
@@ -37,10 +34,13 @@ class RefreshToken extends BaseRefreshToken
     }
 
     /**
-     * @param ClientInterface|null $client
-     * @return $this|void
+     * Set client
+     *
+     * @param \MasterPoBundle\Entity\Client $client
+     *
+     * @return RefreshToken
      */
-    public function setClient(ClientInterface $client = null)
+    public function setClient(\MasterPoBundle\Entity\Client $client)
     {
         $this->client = $client;
 
@@ -58,10 +58,13 @@ class RefreshToken extends BaseRefreshToken
     }
 
     /**
-     * @param UserInterface|null $user
-     * @return $this|void
+     * Set user
+     *
+     * @param \MasterPoBundle\Entity\User $user
+     *
+     * @return RefreshToken
      */
-    public function setUser(UserInterface $user = null)
+    public function setUser(\MasterPoBundle\Entity\User $user = null)
     {
         $this->user = $user;
 
@@ -78,3 +81,4 @@ class RefreshToken extends BaseRefreshToken
         return $this->user;
     }
 }
+

@@ -1,8 +1,0 @@
-MasterPoBundle\Entity\Thread:
-    repositoryClass: MasterPoBundle\Repository\ThreadRepository
-
-    id:
-        id:
-            type: integer
-            generator:
-                strategy: AUTO

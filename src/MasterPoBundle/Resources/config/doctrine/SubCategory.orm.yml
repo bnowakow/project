@@ -1,0 +1,43 @@
+MasterPoBundle\Entity\SubCategory:
+    type: entity
+    table: null
+    repositoryClass: MasterPoBundle\Repository\SubCategoryRepository
+    manyToOne:
+        category:
+            targetEntity: MasterPoBundle\Entity\Category
+            inversedBy: sub_categories
+            joinColumn:
+                name: category_id
+                referencedColumnName: id
+
+    oneToMany:
+        products:
+            targetEntity: MasterPoBundle\Entity\Product
+            mappedBy: sub_category
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        product_count:
+            type: integer
+        name:
+            type: string
+            length: 64
+
+        active:
+            type: boolean
+            options:
+                default: true
+        slug:
+            type: string
+            length: 128
+            gedmo:
+                slug:
+                    separator: _
+                    style: camel
+                    fields:
+                      - name
+    lifecycleCallbacks: {  }

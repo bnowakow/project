@@ -1,0 +1,39 @@
+MasterPoBundle\Entity\City:
+    type: entity
+    table: null
+    repositoryClass: MasterPoBundle\Repository\CityRepository
+    oneToMany:
+        profiles:
+            targetEntity: MasterPoBundle\Entity\Profile
+            mappedBy: city
+    manyToOne:
+        region:
+            targetEntity: MasterPoBundle\Entity\Region
+            inversedBy: cities
+            joinColumn:
+                name: region_id
+                referencedColumnName: id
+
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        slug:
+            type: string
+            length: 128
+            gedmo:
+                slug:
+                    separator: _
+                    style: camel
+                    fields:
+                      - name
+        name:
+            type: string
+            length: 255
+    indexes:
+        search_idx:
+            columns: slug
+    lifecycleCallbacks: {  }

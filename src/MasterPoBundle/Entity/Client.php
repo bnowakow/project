@@ -2,33 +2,16 @@
 
 namespace MasterPoBundle\Entity;
 
-use FOS\OAuthServerBundle\Entity\Client as BaseClient;
-
-
 /**
  * Client
  */
-class Client extends BaseClient
+class Client
 {
     /**
      * @var integer
      */
-    protected $id;
+    private $id;
 
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
-
-    public function __construct()
-    {
-        parent::__construct();
-    }
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
@@ -44,6 +27,25 @@ class Client extends BaseClient
      */
     private $auth_codes;
 
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->refresh_tokens = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->access_tokens = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->auth_codes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
 
     /**
      * Add refreshToken
@@ -147,3 +149,4 @@ class Client extends BaseClient
         return $this->auth_codes;
     }
 }
+

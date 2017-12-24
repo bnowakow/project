@@ -1,0 +1,31 @@
+MasterPoBundle\Entity\Category:
+  type: entity
+  table: null
+  repositoryClass: MasterPoBundle\Repository\CategoryRepository
+  oneToMany:
+      sub_categories:
+          targetEntity: MasterPoBundle\Entity\SubCategory
+          mappedBy: category
+  id:
+      id:
+          type: integer
+          generator:
+              strategy: AUTO
+  fields:
+      slug:
+          type: string
+          length: 128
+          gedmo:
+              slug:
+                  separator: _
+                  style: camel
+                  fields:
+                    - name
+      name:
+          type: string
+          length: 64
+
+      active:
+          type: boolean
+          options:
+              default: true

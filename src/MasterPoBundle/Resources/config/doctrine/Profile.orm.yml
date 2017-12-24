@@ -1,0 +1,54 @@
+MasterPoBundle\Entity\Profile:
+    table: null
+    type: entity
+    repositoryClass: MasterPoBundle\Repository\ProfileRepository
+
+    oneToMany:
+        products:
+            targetEntity: MasterPoBundle\Entity\Product
+            mappedBy: profile
+    manyToOne:
+        city:
+            targetEntity: MasterPoBundle\Entity\City
+            inversedBy: profiles
+            joinColumn:
+                name: city_id
+                referencedColumnName: id
+    oneToOne:
+        user:
+            targetEntity: MasterPoBundle\Entity\User
+            inversedBy: profile
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        contact_person:
+            type: string
+            lenght: 50
+            nullable: true
+        phone:
+            type: integer
+            lenght: 12
+            nullable: true
+        active:
+            type: boolean
+            options:
+                default: true
+
+        slug:
+            nullable: true
+            type: string
+            length: 128
+            gedmo:
+                slug:
+                    separator: _
+                    style: camel
+                    fields:
+                      - contact_person
+    lifecycleCallbacks: {  }

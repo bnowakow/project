@@ -1,0 +1,23 @@
+MasterPoBundle\Entity\ProductPhotoGalleries:
+    table: null
+    type: entity
+    repositoryClass: MasterPoBundle\Repository\ProductPhotoGalleriesRepository
+    manyToOne:
+        product:
+            targetEntity: MasterPoBundle\Entity\Product
+            inversedBy: product_photo_galleries
+            joinColumn:
+                name: product_id
+                referencedColumnName: id
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            nullable: true
+            length: '255'
+    lifecycleCallbacks: {  }

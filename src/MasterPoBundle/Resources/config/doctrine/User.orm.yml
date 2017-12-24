@@ -1,5 +1,11 @@
 MasterPoBundle\Entity\User:
+    type:  entity
+    table: fos_user
     repositoryClass: MasterPoBundle\Repository\UserRepository
+    oneToOne:
+        profile:
+            targetEntity: MasterPoBundle\Entity\Profile
+            mappedBy: user
     oneToMany:
         refresh_tokens:
             targetEntity: MasterPoBundle\Entity\RefreshToken
@@ -10,11 +16,6 @@ MasterPoBundle\Entity\User:
         auth_codes:
             targetEntity: MasterPoBundle\Entity\AuthCode
             mappedBy: user
-        blogPosts:
-            targetEntity: MasterPoBundle\Entity\BlogPost
-            mappedBy: user
-    type:  entity
-    table: fos_user
 
     id:
         id:
