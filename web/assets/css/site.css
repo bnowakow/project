@@ -1,0 +1,19 @@
+@font-face{
+    font-family: Junegull;
+    src: url(../fonts/1440.ttf);
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+    text-decoration: none;
+    color: black;
+    font-family: Junegull;
+}
+
+.not-active {
+
+    color: lightgrey;
+    pointer-events: none;
+    cursor: default;
+}

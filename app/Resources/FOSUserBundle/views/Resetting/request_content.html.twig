@@ -1,0 +1,20 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+
+<section>
+    <div class="container">
+        <div id="loginbox" style="margin-top:50px;" class="mainbox col-md-6 col-md-offset-4 col-sm-8 col-sm-offset-2">
+            <form action="{{ path('fos_user_resetting_send_email') }}" method="POST" class="fos_user_resetting_request">
+                <input placeholder="{% trans %}Логин или Email {% endtrans %}" class="span2" type="text" id="username"
+                       name="username" required="required"/>
+
+                <div class="btn-group" role="group">
+                    <input class="btn btn btn-success btn-block"
+                           type="submit"
+                           value="{{ 'сбросить'|trans }}">
+                </div>
+
+            </form>
+        </div>
+    </div>
+</section>

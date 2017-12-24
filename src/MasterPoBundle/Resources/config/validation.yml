@@ -1,0 +1,39 @@
+MasterPoBundle\Entity\User:
+    properties:
+        email:
+            - Email:
+                message: "Адрес электронной почты  не является действительным."
+                checkMX: true
+            - Length:
+                min: 5
+                minMessage: "Ваш адрес электронной почты должен иметь не менее {{limit}} символов."
+                max: 255
+                maxMessage: "Ваш адрес электронной почты слишком длинный."
+            - NotBlank:
+                message: "Пожалуйста, введите адрес электронной почты"
+        username:
+            - Length:
+                min: 3
+                minMessage: "Имя пользователя должно быть как минимум{{limit}} символов."
+                max: 255
+                maxMessage: "Имя пользователя слишком длинное."
+            - NotBlank:
+                message: "Введите имя пользователя"
+        plainPassword:
+            - Length:
+                min: 6
+                minMessage: "Ваш пароль должен иметь как минимум {{ limit }} цифр."
+                max: 255
+                maxMessage: "Пароль слишком длинный"
+            - NotBlank:
+                message: "Пожалуйста, введите пароль"
+
+
+MasterPoBundle\Entity\UserEmail:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+            fields: email
+            message: "Вы уже подписаны"
+    properties:
+        email:
+            - Email:

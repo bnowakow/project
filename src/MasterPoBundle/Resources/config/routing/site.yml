@@ -1,0 +1,7 @@
+sadi_sam_index:
+    path:     /{_locale}/
+    defaults: { _controller: MasterPoBundle:Site:index }
+    methods:  [GET, POST]
+    requirements:
+        _locale: '%app.locales%'
+        _format:  html|rss

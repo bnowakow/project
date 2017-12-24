@@ -1,0 +1,25 @@
+MasterPoBundle\Entity\AuthCode:
+    type: entity
+    table: null
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    manyToOne:
+        client:
+            targetEntity: MasterPoBundle\Entity\Client
+            inversedBy: auth_codes
+            joinColumn:
+                name: client_id
+                referencedColumnName: id
+                nullable: false
+
+        user:
+            targetEntity: MasterPoBundle\Entity\User
+            inversedBy: auth_codes
+            joinColumn:
+                name: user_id
+                referencedColumnName: id

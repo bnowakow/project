@@ -1,0 +1,25 @@
+MasterPoBundle\Entity\AccessToken:
+    type:  entity
+    table: access_token
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    manyToOne:
+        client:
+            targetEntity: MasterPoBundle\Entity\Client
+            inversedBy: access_tokens
+            joinColumn:
+                name: client_id
+                referencedColumnName: id
+                nullable: false
+
+        user:
+            targetEntity: MasterPoBundle\Entity\User
+            inversedBy: access_tokens
+            joinColumn:
+                name: user_id
+                referencedColumnName: id
+

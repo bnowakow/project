@@ -1,0 +1,23 @@
+MasterPoBundle\Entity\User:
+    repositoryClass: MasterPoBundle\Repository\UserRepository
+    oneToMany:
+        refresh_tokens:
+            targetEntity: MasterPoBundle\Entity\RefreshToken
+            mappedBy: user
+        access_tokens:
+            targetEntity: MasterPoBundle\Entity\AccessToken
+            mappedBy: user
+        auth_codes:
+            targetEntity: MasterPoBundle\Entity\AuthCode
+            mappedBy: user
+        blogPosts:
+            targetEntity: MasterPoBundle\Entity\BlogPost
+            mappedBy: user
+    type:  entity
+    table: fos_user
+
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO

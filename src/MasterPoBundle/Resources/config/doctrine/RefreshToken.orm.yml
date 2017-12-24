@@ -1,0 +1,24 @@
+MasterPoBundle\Entity\RefreshToken:
+    type:  entity
+    table: refresh_token
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
+
+    manyToOne:
+        client:
+            targetEntity: MasterPoBundle\Entity\Client
+            inversedBy: refresh_tokens
+            joinColumn:
+                name: client_id
+                referencedColumnName: id
+                nullable: false
+
+        user:
+            targetEntity: MasterPoBundle\Entity\User
+            inversedBy: refresh_tokens
+            joinColumn:
+                name: user_id
+                referencedColumnName: id

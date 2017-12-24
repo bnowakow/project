@@ -1,0 +1,8 @@
+masterpo_homepage:
+    resource: "@MasterPoBundle/Resources/config/routing/site.yml"
+    prefix:   /
+
+
+masterpo_api:
+    resource: "@MasterPoBundle/Resources/config/routing/api.yml"
+    prefix: /api

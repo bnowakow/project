@@ -1,0 +1,10 @@
+parameters:
+   my.custom.user_provider: MasterPoBundle\Security\Core\User\FOSUBUserProvider
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+

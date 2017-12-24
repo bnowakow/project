@@ -1,0 +1,283 @@
+imports:
+    - { resource: parameters.yml }
+    - { resource: security.yml }
+    - { resource: services.yml }
+
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
+parameters:
+    catalog.path: '%kernel.root_dir%/../web/assets/img/'
+    img.path: '%kernel.root_dir%/../web/assets/img/'
+    locale: ru
+    app.locales: ru|ua
+    locale_supported: ['ru','ua']
+
+
+framework:
+    http_method_override: true
+    default_locale: ru
+    #esi: ~
+    translator:
+        fallbacks: ['%locale%']
+    secret: '%secret%'
+    router:
+        resource: '%kernel.root_dir%/config/routing.yml'
+        strict_requirements: ~
+    form: ~
+    csrf_protection: ~
+    validation:   { enabled: true, enable_annotations: false }
+    serializer: { enable_annotations: true }
+    templating:
+        engines: ['twig']
+    default_locale: '%locale%'
+    trusted_hosts: ~
+    session:
+        # http://symfony.com/doc/current/reference/configuration/framework.html#handler-id
+        handler_id:  session.handler.native_file
+        save_path:   "%kernel.root_dir%/../var/sessions/%kernel.environment%"
+    fragments: ~
+    http_method_override: true
+    assets: ~
+    php_errors:
+        log: true
+
+# Assetic Configuration
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+
+# Twig Configuration
+twig:
+    form_themes:
+        - 'NietonfirGoogleReCaptchaBundle:Form:fields.html.twig'
+        - 'bootstrap_3_layout.html.twig'
+    debug: '%kernel.debug%'
+    strict_variables: '%kernel.debug%'
+    auto_reload: true
+
+# Swiftmailer Configuration
+swiftmailer:
+    transport: '%mailer_transport%'
+    host: '%mailer_host%'
+    username: '%mailer_user%'
+    password: '%mailer_password%'
+    spool: { type: memory }
+
+
+
+#jms_i18n_routing:
+#    default_locale: "%locale%"
+#    locales: [ru, ua]
+#    strategy: prefix_except_default
+
+#fos_user:
+#    service:
+#        mailer: fos_user.mailer.twig_swift
+#    resetting:
+#        email:
+#            template: email/password_resetting.email.twig
+#    registration:
+#        confirmation:
+#            template: '@FOSUser/Registration/email.txt.twig'
+#            enabled: true
+#        form:
+#            type: MasterPoBundle\Form\RegistrationType
+#    db_driver: orm # other valid values are 'mongodb' and 'couchdb'
+#    firewall_name: secured_area
+#    user_class: MasterPoBundle\Entity\User
+#    from_email:
+#        address: "%mailer_user%"
+#        sender_name: "MasterPo.com.ua"
+
+# Doctrine Configuration
+doctrine:
+    dbal:
+        driver: pdo_mysql
+        host: '%database_host%'
+        port: '%database_port%'
+        dbname: '%database_name%'
+        user: '%database_user%'
+        password: '%database_password%'
+        charset: UTF8
+        # if using pdo_sqlite as your database driver:
+        #   1. add the path in parameters.yml
+        #     e.g. database_path: "%kernel.root_dir%/../var/data/data.sqlite"
+        #   2. Uncomment database_path in parameters.yml.dist
+        #   3. Uncomment next line:
+        #path: '%database_path%'
+    orm:
+        auto_generate_proxy_classes: '%kernel.debug%'
+        naming_strategy: doctrine.orm.naming_strategy.underscore
+        auto_mapping: true
+
+
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        product_image:
+            uri_prefix:         /images/products
+            upload_destination: '%kernel.root_dir%/../web/images/products'
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+
+knp_paginator:
+    page_range: 5                      # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        pagination: 'KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig'     # sliding pagination controls template
+        sortable: 'KnpPaginatorBundle:Pagination:sortable_link.html.twig'                # sort link template
+
+
+#hwi_oauth:
+#    connect:
+#        account_connector: my.custom.user_provider
+#    firewall_names: [ secured_area ]
+#    fosub:
+#        username_iterations: 30
+#        properties:
+#            # these properties will be used/redefined later in the custom FOSUBUserProvider service.
+#            google: google_id
+#            facebook: facebook_id
+#    resource_owners:
+#        facebook:
+#            type:                facebook
+#            client_id:           "%facebook_app_id%"
+#            client_secret:       "%facebook_app_secret%"
+#            scope:               "email"
+#        google:
+#            type:                google
+#            client_id:           "%google_app_id%"
+#            client_secret:       "%google_app_secret%"
+#            scope:               "https://www.googleapis.com/auth/plus.login email profile"
+#
+#
+#    # here you will add one (or more) configurations for resource owners
+#
+
+white_october_breadcrumbs:
+    separator:          ''
+    separatorClass:     'separator'
+    listId:             'wo-breadcrumbs'
+    listClass:          'breadcrumb'
+    itemClass:          ''
+    linkRel:            ''
+    locale:             ~ # defaults to null, so the default locale is used
+    translation_domain: ~ # defaults to null, so the default domain is used
+
+stof_doctrine_extensions:
+    default_locale: "%locale%"
+    translation_fallback: true
+    orm:
+        default:
+            tree: true
+            sluggable: true
+            translatable: true
+            timestampable: true
+            softdeleteable: true
+
+liip_imagine:
+    resolvers:
+        default:
+            web_path: ~
+    filter_sets:
+        my_watermark_filter:
+            filters:
+                # use and setup the "watermark" filter
+                watermark:
+                    # path to the watermark file (prepended with "%kernel.root_dir%")
+                    image: Resources/data/watermark.png
+                    # size of the water mark relative to the input image
+                    size: 0.5
+                    # set the position of the watermark
+                    position: bottomright
+        cache: ~
+        # the name of the "filter set"
+        my_thumb:
+            # adjust the image quality to 75%
+            quality: 75
+            # list of transformations to apply (the "filters")
+            filters:
+                # create a thumbnail: set size to 120x90 and use the "outbound" mode
+                # to crop the image when the size ratio of the input differs
+                thumbnail: { size: [120, 90], mode: outbound }
+
+
+ivory_ck_editor:
+    input_sync: true
+    configs:
+        my_config_1:
+            toolbar: "my_toolbar_1"
+            uiColor: "#000000"
+            # ...
+
+            # ...
+    toolbars:
+        configs:
+            my_toolbar_1: [ "@document", "/", "@link" , "/", "@tool" ]
+
+        items:
+            document: [ "Source", "-", "Save" ]
+            link:     [ "Anchor" ]
+            tool:     [ "Maximize" ]
+
+easy_admin:
+    entities:
+        BlogPost:
+            class: MasterPoBundle\Entity\BlogPost
+        BlogTag:
+            class: MasterPoBundle\Entity\BlogTag
+        BlogCategory:
+            class: MasterPoBundle\Entity\BlogCategory
+        User:
+            class: MasterPoBundle\Entity\User
+
+
+nietonfir_google_recaptcha:
+    sitekey: '%sitekey_google_recaptcha%'
+    secret: '%secret_google_recaptcha%'
+    validation: 'sadisambundle_blogcomment'
+
+
+
+# REST API
+nelmio_api_doc: ~
+
+fos_rest:
+    allowed_methods_listener: true
+    unauthorized_challenge: "Basic realm=\"Restricted Area\""
+    access_denied_listener:
+        # all requests using the 'json' format will return a 403 on an access denied violation
+        json: true
+    format_listener:
+        enabled: true
+        rules:
+            - { path: '^/api', priorities: ['json'], fallback_format: json, prefer_extension: false }
+            - { path: '^/', priorities: ['html'], fallback_format: html, prefer_extension: true }
+
+# FOS User Configuration
+fos_user:
+    db_driver: orm
+    firewall_name: api
+    user_class: MasterPoBundle\Entity\User
+    from_email:
+        address: "%mailer_user%"
+        sender_name: "%mailer_user%"
+
+# FOS Oauth Configuration
+fos_oauth_server:
+    db_driver:           orm
+    client_class:        MasterPoBundle\Entity\Client
+    access_token_class:  MasterPoBundle\Entity\AccessToken
+    refresh_token_class: MasterPoBundle\Entity\RefreshToken
+    auth_code_class:     MasterPoBundle\Entity\AuthCode
+    service:
+        user_provider: fos_user.user_provider           # This property will be used when valid credentials are given to load the user upon access token creation

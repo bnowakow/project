@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>{% block title %}{{ 'Объявления мастеров Украины. на masterpo.com.ua'|trans }}{% endblock %}</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
+    {% block stylesheets %}
+        {% stylesheets
+            'assets/css/site.css'
+            'assets/bower/addyosmani-jquery-ui-bootstrap/assets/css/bootstrap.min.css'
+            filter='cssrewrite' %}
+            <link rel="stylesheet" href="{{ asset_url }}"/>
+        {% endstylesheets %}
+    {% endblock %}
+    {% block headJavascripts %}
+        {% javascripts
+            'assets/bower/jquery/dist/jquery.min.js' %}
+            <script src="{{ asset_url }}"></script>
+        {% endjavascripts %}
+    {% endblock %}
+</head>
+<body id="page-top" class="index">
+<div class="container">
+
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-form navbar-right font">
+        {% if (app.request.getLocale == 'ru') %}
+            <a class="not-active"
+               href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : 'ru'})) }}">язык
+                |</a>
+            <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : 'ua'})) }}">мова</a>
+        {% else %}
+            <a href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : 'ru'})) }}">язык
+                |</a>
+            <a class="not-active"
+               href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : 'ua'})) }}">мова</a>
+        {% endif %}
+
+    </div>
+
+    <div class="navbar-header">
+        <a title="ШахерМахер" class="navbar-brand" href="/">
+            <i style="color: black"> <i style="color: red">Ш</i>ахер </i><br><i style="color: black"><i style="color: red">М</i>ахер</i>   </a>
+    </div>
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+        <div class="navbar-form navbar-right font">
+
+                {% if is_granted('ROLE_ADMIN') %}
+                    <li title="{{ 'админка'|trans }}" class="text-center">
+                        <a href="{{ path('admin') }}">
+                            <i class="glyphicon glyphicon-font"><br> {{ 'админка'|trans }}</i>
+                        </a>
+
+                {% endif %}
+                {% if is_granted('ROLE_USER') %}
+
+                        <a href="{{ path('fos_user_security_logout') }}">
+                           {{ app.user.username }}<br>{{ 'выход'|trans }}</i>
+                        </a>
+
+                {% else %}
+                    <a href="{{ path('fos_user_security_login') }}">
+                        {{ 'вход'|trans }} |
+                    </a>
+
+                    <a href="{{ path('fos_user_security_login') }}">
+                        {{ 'регистрация'|trans }}
+                    </a>
+                {% endif %}
+
+        </div><!-- /.navbar-collapse -->
+    </div><!-- /.navbar-collapse -->
+    <hr style="margin: 0;">
+
+    {% block search %}{% endblock %}
+    {% block content %}{% endblock %}
+</div>
+
+{% block javascripts %}
+    {% javascripts
+        'assets/bower/bootstrap/dist/js/bootstrap.min.js' %}
+        <script src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+{% endblock %}
+</body>
+</html>

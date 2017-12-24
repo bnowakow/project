@@ -1,0 +1,18 @@
+api_blog_posts:
+    path:   /posts
+    methods:  [GET]
+    controller: 'MasterPoBundle:Api\Blog:getPosts'
+
+api_blog_article:
+    path:    /article/{id}
+    methods:  [GET]
+    controller: 'MasterPoBundle:Api\Blog:getArticleById'
+    requirements:
+        id:     \d+
+
+api_blog_remove_article:
+    path:    article/{id}/delete
+#    methods:  [DELETE]
+    controller: 'MasterPoBundle:Api\Blog:deleteArticle'
+    requirements:
+        id:     \d+

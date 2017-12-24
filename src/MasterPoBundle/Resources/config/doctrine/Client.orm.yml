@@ -1,0 +1,18 @@
+MasterPoBundle\Entity\Client:
+    type: entity
+    table: null
+    oneToMany:
+        refresh_tokens:
+            targetEntity: MasterPoBundle\Entity\RefreshToken
+            mappedBy: client
+        access_tokens:
+            targetEntity: MasterPoBundle\Entity\AccessToken
+            mappedBy: client
+        auth_codes:
+            targetEntity: MasterPoBundle\Entity\AuthCode
+            mappedBy: client
+    id:
+        id:
+            type: integer
+            generator:
+                strategy: AUTO
