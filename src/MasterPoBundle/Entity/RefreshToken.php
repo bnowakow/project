@@ -81,4 +81,3 @@ class RefreshToken
         return $this->user;
     }
 }
-

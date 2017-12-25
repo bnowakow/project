@@ -231,12 +231,14 @@ ivory_ck_editor:
 
 easy_admin:
     entities:
-        BlogPost:
-            class: MasterPoBundle\Entity\BlogPost
-        BlogTag:
-            class: MasterPoBundle\Entity\BlogTag
-        BlogCategory:
-            class: MasterPoBundle\Entity\BlogCategory
+        Profile:
+            class: MasterPoBundle\Entity\Profile
+        Product:
+            class: MasterPoBundle\Entity\Product
+        Category:
+            class: MasterPoBundle\Entity\Category
+        SubCategory:
+            class: MasterPoBundle\Entity\SubCategory
         User:
             class: MasterPoBundle\Entity\User
 

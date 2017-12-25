@@ -400,7 +400,7 @@ class Product
      *
      * @return Product
      */
-    public function addProductPhotoGallery(\MasterPoBundle\Entity\ProductPhotoGalleries $productPhotoGallery)
+    public function addProductPhotoGallery(ProductPhotoGalleries $productPhotoGallery)
     {
         $this->product_photo_galleries[] = $productPhotoGallery;
 
@@ -412,7 +412,7 @@ class Product
      *
      * @param \MasterPoBundle\Entity\ProductPhotoGalleries $productPhotoGallery
      */
-    public function removeProductPhotoGallery(\MasterPoBundle\Entity\ProductPhotoGalleries $productPhotoGallery)
+    public function removeProductPhotoGallery( ProductPhotoGalleries $productPhotoGallery)
     {
         $this->product_photo_galleries->removeElement($productPhotoGallery);
     }

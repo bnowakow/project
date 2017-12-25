@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+  {% block content %}
+
+      {% for product in subCategory.products %}
+          {{ product.name }}
+      {% endfor %}
+      <hr>
+
+  {% endblock %}

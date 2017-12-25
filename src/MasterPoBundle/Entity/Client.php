@@ -149,4 +149,3 @@ class Client
         return $this->auth_codes;
     }
 }
-

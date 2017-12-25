@@ -10,4 +10,14 @@ namespace MasterPoBundle\Repository;
  */
 class ProductRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function getVipProducts()
+    {
+        return $this->createQueryBuilder('p')
+            ->select('p')
+            ->where('p.active = 1')
+//            TODO change after test
+//            ->andWhere('p.vip = 1')
+            ->orderBy('p.id', 'DESC');
+    }
+
 }

@@ -1,7 +1,31 @@
-sadi_sam_index:
+site_index:
     path:     /{_locale}/
     defaults: { _controller: MasterPoBundle:Site:index }
-    methods:  [GET, POST]
+    methods:  [GET]
+    requirements:
+        _locale: '%app.locales%'
+        _format:  html|rss
+
+site_post_exchange:
+    path:     /{_locale}/post-new-exchange
+    defaults: { _controller: MasterPoBundle:Site:postNewExchange }
+    methods:  [POST, GET]
+    requirements:
+        _locale: '%app.locales%'
+        _format:  html|rss
+
+category_show:
+    path:     /{_locale}/obmen/{categorySlug}
+    defaults: { _controller: MasterPoBundle:Site:showCategory}
+    methods:  [GET]
+    requirements:
+        _locale: '%app.locales%'
+        _format:  html|rss
+
+product_detail:
+    path:     /{_locale}/obmen/{categoryName}/{subCategoryName}
+    defaults: { _controller: MasterPoBundle:Site:productDetail}
+    methods:  [GET]
     requirements:
         _locale: '%app.locales%'
         _format:  html|rss

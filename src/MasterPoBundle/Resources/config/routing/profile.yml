@@ -1,0 +1,9 @@
+profile_index:
+    path:     /
+    defaults: { _controller: MasterPoBundle:Profile:index }
+    methods:  [GET]
+
+profile_setup:
+    path:     /setup
+    defaults: { _controller: MasterPoBundle:Profile:setup }
+    methods:  [GET, POST]

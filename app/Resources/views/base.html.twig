@@ -6,12 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <title>{% block title %}{{ 'Объявления мастеров Украины. на masterpo.com.ua'|trans }}{% endblock %}</title>
+    <title>{% block title %}{{ 'Обмен вещами'|trans }}{% endblock %}</title>
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}"/>
     {% block stylesheets %}
         {% stylesheets
-            'assets/css/site.css'
+            'assets/bower/font-awesome/css/font-awesome.min.css'
             'assets/bower/addyosmani-jquery-ui-bootstrap/assets/css/bootstrap.min.css'
+            'assets/css/site.css'
             filter='cssrewrite' %}
             <link rel="stylesheet" href="{{ asset_url }}"/>
         {% endstylesheets %}
@@ -39,7 +40,6 @@
             <a class="not-active"
                href="{{ path(app.request.get('_route'), app.request.get('_route_params')|merge({'_locale' : 'ua'})) }}">мова</a>
         {% endif %}
-
     </div>
 
     <div class="navbar-header">
@@ -51,34 +51,66 @@
 
         <div class="navbar-form navbar-right font">
 
-                {% if is_granted('ROLE_ADMIN') %}
-                    <li title="{{ 'админка'|trans }}" class="text-center">
-                        <a href="{{ path('admin') }}">
-                            <i class="glyphicon glyphicon-font"><br> {{ 'админка'|trans }}</i>
-                        </a>
+            <ul class="nav navbar-nav navbar-right">
 
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('admin') }}">
+                        {{ 'админка'|trans }}
+                    </a>
                 {% endif %}
+                <li title="{{ 'Избранное'|trans }}" class="text-center">
+                    <a href="#">
+                        <i class="fa fa-heart-o fa-3x"><br></i>
+                    </a>
+                </li>
+
+                <li title="{{ 'Добавить товар'|trans }}" class="text-center">
+                    <a href="{{ path('site_post_exchange') }}">
+                        <i class="fa fa-plus fa-3x" aria-hidden="true"></i>
+                    </a>
+                </li>
                 {% if is_granted('ROLE_USER') %}
 
-                        <a href="{{ path('fos_user_security_logout') }}">
-                           {{ app.user.username }}<br>{{ 'выход'|trans }}</i>
-                        </a>
+
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="fa fa-user-o fa-3x"></i> </a>
+                            <ul class="dropdown-menu">
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-refresh" aria-hidden="true"></i> {{ 'обмен'|trans }}
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('profile_setup') }}">
+                                        <i class="fa fa-cog"></i> {{ 'настройки'|trans }}
+                                    </a>
+                                </li>
+                                <li role="separator" class="divider"></li>
+
+                                <li>
+                                    <a href="{{ path('fos_user_security_logout') }}">
+                                        <i class="fa fa-sign-out"></i> {{ 'выход'|trans }}
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+
 
                 {% else %}
-                    <a href="{{ path('fos_user_security_login') }}">
-                        {{ 'вход'|trans }} |
-                    </a>
-
-                    <a href="{{ path('fos_user_security_login') }}">
-                        {{ 'регистрация'|trans }}
-                    </a>
+                    <li title="{{ 'вход'|trans }}" class="text-center">
+                        <a href="{{ path('fos_user_security_login') }}">
+                            <i class="fa fa-sign-in fa-3x"></i>
+                        </a>
+                    </li>
                 {% endif %}
+            </ul>
 
         </div><!-- /.navbar-collapse -->
     </div><!-- /.navbar-collapse -->
-    <hr style="margin: 0;">
 
-    {% block search %}{% endblock %}
+    {{ wo_render_breadcrumbs() }}
     {% block content %}{% endblock %}
 </div>
 

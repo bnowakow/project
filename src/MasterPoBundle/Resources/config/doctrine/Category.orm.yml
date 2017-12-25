@@ -20,11 +20,14 @@ MasterPoBundle\Entity\Category:
                   separator: _
                   style: camel
                   fields:
-                    - name
-      name:
+                    - name_ru
+      name_ru:
           type: string
           length: 64
 
+      name_ua:
+          type: string
+          length: 64
       active:
           type: boolean
           options:

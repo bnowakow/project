@@ -81,4 +81,3 @@ class AuthCode
         return $this->user;
     }
 }
-

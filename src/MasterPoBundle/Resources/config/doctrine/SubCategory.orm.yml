@@ -23,7 +23,13 @@ MasterPoBundle\Entity\SubCategory:
     fields:
         product_count:
             type: integer
-        name:
+            length: 255
+            options:
+                default: 0
+        name_ru:
+            type: string
+            length: 64
+        name_ua:
             type: string
             length: 64
 
@@ -39,5 +45,5 @@ MasterPoBundle\Entity\SubCategory:
                     separator: _
                     style: camel
                     fields:
-                      - name
+                      - name_ru
     lifecycleCallbacks: {  }

@@ -15,12 +15,17 @@ class SubCategory
     /**
      * @var integer
      */
-    private $product_count;
+    private $product_count = 0;
 
     /**
      * @var string
      */
-    private $name;
+    private $name_ru;
+
+    /**
+     * @var string
+     */
+    private $name_ua;
 
     /**
      * @var boolean
@@ -85,27 +90,51 @@ class SubCategory
     }
 
     /**
-     * Set name
+     * Set nameRu
      *
-     * @param string $name
+     * @param string $nameRu
      *
      * @return SubCategory
      */
-    public function setName($name)
+    public function setNameRu($nameRu)
     {
-        $this->name = $name;
+        $this->name_ru = $nameRu;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get nameRu
      *
      * @return string
      */
-    public function getName()
+    public function getNameRu()
     {
-        return $this->name;
+        return $this->name_ru;
+    }
+
+    /**
+     * Set nameUa
+     *
+     * @param string $nameUa
+     *
+     * @return SubCategory
+     */
+    public function setNameUa($nameUa)
+    {
+        $this->name_ua = $nameUa;
+
+        return $this;
+    }
+
+    /**
+     * Get nameUa
+     *
+     * @return string
+     */
+    public function getNameUa()
+    {
+        return $this->name_ua;
     }
 
     /**
@@ -212,6 +241,22 @@ class SubCategory
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * @return string
+     */
+    public function getName():string
+    {
+        switch(($GLOBALS['request'])->getLocale())
+        {
+            case 'ru':
+                return $this->getNameRu();
+            case 'ua':
+                return $this->getNameUa();
+            default:
+                return $this->getNameRu();
+        }
     }
 }
 

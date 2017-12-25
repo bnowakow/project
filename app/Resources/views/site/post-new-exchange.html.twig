@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+    {% block content %}
+
+        <h1>Новый пост</h1>
+
+        {{ form_start(form) }}
+        {# render the task's only field: description #}
+        {{ form_row(form.description) }}
+
+        <h3>Tags</h3>
+
+        {{ form_end(form) }}
+
+    {% endblock %}

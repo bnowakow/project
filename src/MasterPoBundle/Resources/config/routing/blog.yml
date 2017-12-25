@@ -1,0 +1,76 @@
+blog_index:
+    path:    /
+    defaults: { _controller: MasterPoBundle:Blog:index, _format: html }
+    requirements:
+        _locale:  '%app.locales%'
+        _format:  html|rss
+
+blog_new_post:
+    path:    /new-post
+    defaults: { _controller: MasterPoBundle:Blog:newPost, _format: html }
+    requirements:
+        _locale:  '%app.locales%'
+        _format:  html|rss
+
+blog_new_category:
+    path:    /new-category
+    defaults: { _controller: MasterPoBundle:Blog:newCategory, _format: html }
+    requirements:
+        _locale:  '%app.locales%'
+        _format:  html|rss
+
+blog_articles_post:
+    path:    /articles/{slug}.{_format}
+    defaults: { _controller: MasterPoBundle:Blog:articles }
+    requirements:
+        _locale:  '%app.locales%'
+        _format:  html|rss
+
+
+blog_tags_post:
+    path:    /tags/{slug}.{_format}
+    defaults: { _controller: MasterPoBundle:Blog:tags }
+    methods:  [GET]
+    requirements:
+        _locale:  '%app.locales%'
+        _format:  html|rss
+
+
+blog_edit_post:
+    path:     /{id}/edit
+    defaults: { _controller: "MasterPoBundle:Blog:edit" }
+    methods:  [GET, POST]
+    requirements:
+        _locale:  '%app.locales%'
+        id:     \d+
+
+blog_delete_post:
+    path:     /{id}/delete
+    defaults: { _controller: "MasterPoBundle:Blog:delete" }
+    methods:  [GET, POST]
+    requirements:
+        id:     \d+
+
+
+blog_new_tag:
+    path:    /new-tag
+    defaults: { _controller: MasterPoBundle:Blog:newTag, _format: html }
+    requirements:
+        _locale:  '%app.locales%'
+        _format:  html|rss
+
+blog_save_email:
+    path:    /save-user-email
+    defaults: { _controller: MasterPoBundle:Blog:saveUserEmail }
+    methods:  [POST]
+    requirements:
+        _locale:  '%app.locales%'
+        _format:  html|rss
+
+blog_table:
+    path:    /table
+    defaults: { _controller: MasterPoBundle:Blog:table, _format: html }
+    requirements:
+        _locale:  '%app.locales%'
+        _format:  html|rss
+

@@ -9,6 +9,7 @@ class AppKernel extends Kernel
     {
         $bundles = [
             new Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+
             new Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Symfony\Bundle\MonologBundle\MonologBundle(),
@@ -34,6 +35,7 @@ class AppKernel extends Kernel
             new FOS\OAuthServerBundle\FOSOAuthServerBundle(),
             new JMS\SerializerBundle\JMSSerializerBundle(),
             new Nelmio\ApiDocBundle\NelmioApiDocBundle(),
+
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {
@@ -41,6 +43,8 @@ class AppKernel extends Kernel
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();
             $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
+            $bundles[] = new Hautelook\AliceBundle\HautelookAliceBundle();
+
 
             if ('dev' === $this->getEnvironment()) {
                 $bundles[] = new Sensio\Bundle\GeneratorBundle\SensioGeneratorBundle();

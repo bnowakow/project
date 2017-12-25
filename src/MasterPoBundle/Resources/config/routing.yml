@@ -3,6 +3,18 @@ masterpo_homepage:
     prefix:   /
 
 
+shahermaher_profile:
+    resource: "@MasterPoBundle/Resources/config/routing/profile.yml"
+    prefix:  /{_locale}/profile
+    requirements:
+        _locale: '%app.locales%'
+        _format:  html|rss
+
 masterpo_api:
     resource: "@MasterPoBundle/Resources/config/routing/api.yml"
     prefix: /api
+
+
+masterpo_login:
+    resource: "@MasterPoBundle/Resources/config/routing/api.yml"
+    prefix: /login

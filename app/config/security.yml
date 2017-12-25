@@ -35,7 +35,8 @@ security:
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/logout$, role: ROLE_USER }
-        - { path: ^/(ru|ua)/anceta/, role: ROLE_USER }
+        - { path: ^/(ru|ua)/profile, role: ROLE_USER }
+        - { path: ^/(ru|ua)/post-new-exchange, role: ROLE_USER }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/resetting, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/(ru|ua)/admin/, role: ROLE_ADMIN }

@@ -3,10 +3,13 @@
 namespace MasterPoBundle\EventListener;
 
 use Doctrine\ORM\EntityManager;
+use FOS\UserBundle\Event\GetResponseUserEvent;
 use FOS\UserBundle\Event\UserEvent;
 use FOS\UserBundle\FOSUserEvents;
+use MasterPoBundle\Entity\Profile;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
-use TopBundle\Entity\Master;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 
 /**
  * Listener responsible to change the redirection at the end of the password resetting
@@ -15,9 +18,12 @@ class RegisterListener implements EventSubscriberInterface
 {
     private $em;
 
-    public function __construct(EntityManager $em)
+    private $router;
+
+    public function __construct(EntityManager $em, UrlGeneratorInterface $router)
     {
         $this->em = $em;
+        $this->router = $router;
     }
 
     /**
@@ -26,25 +32,32 @@ class RegisterListener implements EventSubscriberInterface
     public static function getSubscribedEvents()
     {
         return [
+            FOSUserEvents::REGISTRATION_CONFIRM => 'onRegistrationConfirm',
             FOSUserEvents::REGISTRATION_COMPLETED => 'onRegistrationSuccess'
+
         ];
     }
 
     /**
      * @param UserEvent $event
-     * @return string
+     * @throws \Doctrine\ORM\OptimisticLockException
      */
     public function onRegistrationSuccess(UserEvent $event)
     {
-        $request = $event->getRequest();
-        $registrationForm = $request->request->get('fos_user_registration_form');
-//        $user = $event->getUser();
-//        $master = new Master();
-//        $master->setUser($user);
-//        $master->setEmail($registrationForm['email']);
-//        $master->setName($registrationForm['username']);
+        $user = $event->getUser();
+        $profile = new Profile();
+        $profile->setUser($user);
 
-        $this->em->persist($master);
+        $this->em->persist($profile);
         $this->em->flush();
+
+    }
+
+    public function onRegistrationConfirm(GetResponseUserEvent $event)
+    {
+
+        $url = $this->router->generate('site_index');
+
+        $event->setResponse(new RedirectResponse($url));
     }
 }

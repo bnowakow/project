@@ -21,3 +21,9 @@ monolog:
         console:
             type: console
             channels: ['!event', '!doctrine']
+
+#hautelook_alice:
+#    fixtures_path: 'Resources/fixtures' # Path to which to look for fixtures relative to the project directory or the bundle path.
+#    root_dirs:
+#        - '%kernel.root_dir%'
+#        - '%kernel.project_dir%'

@@ -25,12 +25,19 @@ services:
 #    master.new_message:
 #        class: SadisamBundle\Service\NewMessage
 #        arguments: [ "@twig", "@mailer" ]
+    rs_user.registration_complet:
+        class: MasterPoBundle\EventListener\RegistrationConfirmListener
+        arguments: ['@router']
+        tags:
+            - { name: kernel.event_subscriber }
 
-#    top.register:
-#        class: MasterPoBundle\EventListener\RegisterListener
-#        arguments: ['@doctrine.orm.entity_manager']
-#        tags:
-#            - { name: kernel.event_subscriber }
+    top.register:
+        class: MasterPoBundle\EventListener\RegisterListener
+        arguments: ['@doctrine.orm.entity_manager']
+        tags:
+            - { name: kernel.event_subscriber }
+
+
 #
 #    app.form.registration:
 #        class: MasterPoBundle\Form\RegistrationType

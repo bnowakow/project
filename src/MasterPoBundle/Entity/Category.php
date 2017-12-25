@@ -1,6 +1,8 @@
 <?php
 
 namespace MasterPoBundle\Entity;
+use Symfony\Component\HttpFoundation\Request;
+
 
 /**
  * Category
@@ -20,7 +22,12 @@ class Category
     /**
      * @var string
      */
-    private $name;
+    private $name_ru;
+
+    /**
+     * @var string
+     */
+    private $name_ua;
 
     /**
      * @var boolean
@@ -75,27 +82,51 @@ class Category
     }
 
     /**
-     * Set name
+     * Set nameRu
      *
-     * @param string $name
+     * @param string $nameRu
      *
      * @return Category
      */
-    public function setName($name)
+    public function setNameRu($nameRu)
     {
-        $this->name = $name;
+        $this->name_ru = $nameRu;
 
         return $this;
     }
 
     /**
-     * Get name
+     * Get nameRu
      *
      * @return string
      */
-    public function getName()
+    public function getNameRu()
     {
-        return $this->name;
+        return $this->name_ru;
+    }
+
+    /**
+     * Set nameUa
+     *
+     * @param string $nameUa
+     *
+     * @return Category
+     */
+    public function setNameUa($nameUa)
+    {
+        $this->name_ua = $nameUa;
+
+        return $this;
+    }
+
+    /**
+     * Get nameUa
+     *
+     * @return string
+     */
+    public function getNameUa()
+    {
+        return $this->name_ua;
     }
 
     /**
@@ -154,6 +185,20 @@ class Category
     public function getSubCategories()
     {
         return $this->sub_categories;
+    }
+
+
+    public function getName()
+    {
+        switch(($GLOBALS['request'])->getLocale())
+        {
+            case 'ru':
+                return $this->getNameRu();
+            case 'ua':
+                return $this->getNameUa();
+            default:
+                return $this->getNameRu();
+        }
     }
 }
 

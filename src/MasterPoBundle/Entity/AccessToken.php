@@ -81,4 +81,3 @@ class AccessToken
         return $this->user;
     }
 }
-

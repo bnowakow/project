@@ -1,0 +1,36 @@
+#MasterPoBundle\Entity\Trail:
+#    trail{1..1000}:
+#        title: '<streetName()>'
+#        photo: '<url()>'
+#        durationFrom: '<durationFrom()>'
+#        durationTo: '<durationTo()>'
+#        difficulty: '<numberBetween(1,3)>'
+#        cities: '<numberBetween(5,10)>x @city*'
+#        countries: '<numberBetween(1,3)>x @country*'
+
+
+
+MasterPoBundle\Entity\Country:
+    country{1}:
+        name: '<country()>'
+
+MasterPoBundle\Entity\Region:
+    region{1..50}:
+        name: '<state()>'
+        country: '@country*'
+
+MasterPoBundle\Entity\City:
+    city{1..100}:
+        name: '<city()>'
+        region: '@region*'
+
+MasterPoBundle\Entity\Category:
+    category{1..13}:
+        name_ru: '<title()>'
+        name_ua: '<title()>'
+
+MasterPoBundle\Entity\SubCategory:
+    subCategory{1..50}:
+        name_ru: '<name()>'
+        name_ua: '<name()>'
+        category: '@category*'
